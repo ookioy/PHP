@@ -1,26 +1,7 @@
 <?php
 $filename = 'products.csv';
+require 'logic/insert_data.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name     = $_POST['name'];
-    $price    = $_POST['price'];
-    $quantity = $_POST['quantity'];
-    $date     = $_POST['date'];
-    $batch    = $_POST['batch'];
-    $person   = $_POST['person'];
-
-    $record = [$name, $price, $quantity, $date, $batch, $person];
-
-    $file = fopen($filename, 'a');
-    
-    fputcsv($file, $record);
-    fclose($file);
-
-    header("Location: " . $_SERVER['PHP_SELF']);
-}
-?>
-
-<?php 
 $pageTitle = 'Лабораторна робота №2: Обробка файлів';
 require 'blocks/header.php'; 
 ?>
@@ -40,22 +21,7 @@ require 'blocks/header.php';
             </tr>
             
             <?php
-        
-            if (file_exists($filename)) {
-                $file = fopen($filename, 'r');
-                if ($file) {
-                    while (($data = fgetcsv($file, 1000, ',')) !== false) {
-                        echo "<tr>";
-                        foreach ($data as $cell) {
-                            echo "<td>" . $cell . "</td>";
-                        }
-                        echo "</tr>";
-                    }
-                    fclose($file);
-                }
-            } else {
-                echo "<tr><td colspan='6'>Файл бази даних ще порожній. Додайте перший товар.</td></tr>";
-            }
+                require 'logic/show_data.php';
             ?>
         </table>
     </section>
