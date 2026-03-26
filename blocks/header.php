@@ -18,7 +18,7 @@ $title = $pageTitle ?? 'Головна сторінка';
 
     <nav>
         <ul>
-            <li><a href="index.php">Лабораторна 1</a></li>
+            <li><a href="LB_1.php">Лабораторна 1</a></li>
             <li><a href="LB_2.php">Лабораторна 2</a></li>
             <li><a href="LB_3.php">Лабораторна 3</a></li>
             <li><a href="LB_4.php">Лабораторна 4</a></li>

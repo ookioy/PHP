@@ -15,4 +15,4 @@ require 'blocks/header.php';
     </section>
 </main>
 
-<?php require 'blocks/footer.php'; 
+<?php require 'blocks/footer.php';
