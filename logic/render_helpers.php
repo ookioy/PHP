@@ -2,7 +2,7 @@
 
 function renderProductsTableSimple(
     array  $products,
-    string $emptyMsg = 'Файл бази даних ще порожній. Додайте перший товар.'
+    string $emptyMsg = 'База даних ще порожня. Додайте перший товар.'
 ): void {
     if (empty($products)) {
         echo '<p>' . htmlspecialchars($emptyMsg) . '</p>';
@@ -20,9 +20,12 @@ function renderProductsTableSimple(
         </tr>
         <?php foreach ($products as $row): ?>
             <tr>
-                <?php foreach ($row as $cell): ?>
-                    <td><?php echo htmlspecialchars($cell); ?></td>
-                <?php endforeach; ?>
+                <td><?php echo htmlspecialchars($row['name']); ?></td>
+                <td><?php echo htmlspecialchars($row['price']); ?></td>
+                <td><?php echo htmlspecialchars($row['count']); ?></td>
+                <td><?php echo htmlspecialchars(date('d.m.Y', strtotime($row['delivery_data']))); ?></td>
+                <td><?php echo htmlspecialchars($row['batch_number']); ?></td>
+                <td><?php echo htmlspecialchars($row['responsible_person']); ?></td>
             </tr>
         <?php endforeach; ?>
     </table>
@@ -32,7 +35,7 @@ function renderProductsTableSimple(
 function renderProductsTable(
     array  $products,
     int    $total,
-    string $emptyMsg   = 'Файл бази даних ще порожній. Додайте перший товар.',
+    string $emptyMsg   = 'База даних ще порожня. Додайте перший товар.',
     string $countLabel = 'Загальна кількість товарів'
 ): void {
     echo '<p><strong>' . htmlspecialchars($countLabel) . ':</strong> ' . $total . '</p>';
@@ -53,9 +56,12 @@ function renderProductsTable(
         </tr>
         <?php foreach ($products as $row): ?>
             <tr>
-                <?php foreach ($row as $cell): ?>
-                    <td><?php echo htmlspecialchars($cell); ?></td>
-                <?php endforeach; ?>
+                <td><?php echo htmlspecialchars($row['name']); ?></td>
+                <td><?php echo htmlspecialchars($row['price']); ?></td>
+                <td><?php echo htmlspecialchars($row['count']); ?></td>
+                <td><?php echo htmlspecialchars(date('d.m.Y', strtotime($row['delivery_data']))); ?></td>
+                <td><?php echo htmlspecialchars($row['batch_number']); ?></td>
+                <td><?php echo htmlspecialchars($row['responsible_person']); ?></td>
             </tr>
         <?php endforeach; ?>
     </table>
