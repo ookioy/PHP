@@ -6,7 +6,7 @@ require_once 'logic/render_helpers.php';
 
 handleProductForm($mysqli);
 
-$products = readProducts($mysqli);
+$products = readProductsSorted($mysqli);
 
 $pageTitle = 'Лабораторна робота №2: Робота з БД';
 require 'blocks/header.php';

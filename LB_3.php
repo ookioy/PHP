@@ -2,14 +2,12 @@
 require_once 'logic/db.php';
 require_once 'logic/form_handler.php';
 require_once 'logic/db_reader.php';
-require_once 'logic/products_sort.php';
 require_once 'logic/render_helpers.php';
 
 handleProductForm($mysqli);
 
-$products      = readProducts($mysqli);
-$products      = sortProductsByPrice($products);
-$totalProducts = countProducts($products);
+$products      = readProductsSorted($mysqli);
+$totalProducts = count($products);
 
 $pageTitle = 'Лабораторна робота №3: Сортування (БД)';
 require 'blocks/header.php';

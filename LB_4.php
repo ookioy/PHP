@@ -2,16 +2,14 @@
 require_once 'logic/db.php';
 require_once 'logic/form_handler.php';
 require_once 'logic/db_reader.php';
-require_once 'logic/products_sort.php';
 require_once 'logic/render_helpers.php';
 
 handleProductForm($mysqli);
 $searchQuery = isset($_GET['searchQuery']) ? trim($_GET['searchQuery']) : '';
 
-$products      = readProducts($mysqli);
-$products      = filterProductsByPerson($products, $searchQuery);
-$products      = sortProductsByPrice($products);
-$totalProducts = countProducts($products);
+// Фільтрація за відповідальним і сортування за ціною — все в одному SQL-запиті
+$products      = readProductsSorted($mysqli, $searchQuery);
+$totalProducts = count($products);
 
 $pageTitle = 'Лабораторна робота №4: Стрічки та Пошук (БД)';
 require 'blocks/header.php';
