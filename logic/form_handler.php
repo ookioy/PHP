@@ -7,15 +7,18 @@ function handleProductForm(mysqli $mysqli): void
         return;
     }
 
-    // Створюємо асоціативний масив (словник)
     $productData = [
-        'name'               => $_POST['name'],
-        'price'              => $_POST['price'],
-        'count'              => $_POST['quantity'],
-        'delivery_data'      => $_POST['date'],
-        'batch_number'       => $_POST['batch'],
-        'responsible_person' => $_POST['person'],
+        'name'               => trim($_POST['name']        ?? ''),
+        'price'              => $_POST['price']             ?? 0,
+        'count'              => $_POST['quantity']          ?? 0,
+        'delivery_data'      => $_POST['date']              ?? '',
+        'batch_number'       => trim($_POST['batch']        ?? ''),
+        'responsible_person' => trim($_POST['person']       ?? ''),
     ];
+
+    if ($productData['name'] === '' || $productData['batch_number'] === '' || $productData['responsible_person'] === '') {
+        return;
+    }
 
     writeProduct($mysqli, $productData);
 
